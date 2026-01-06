@@ -17,14 +17,14 @@ export function AboutSection() {
             AI team at PagerDuty, where I design and evaluate production-grade AI agents using
             state-of-the-art LLMs, lead MCP and agent-to-agent (A2A) integrations, and develop LLM
             evaluation pipelines (LLM-as-Judge for classification and reasoning tasks), as well as
-            some of our core AI Agents.
+            some of our core AI Agents. Currently seeking to deepen my research contributions in
+            large language models, LLMs learning and training through PhD study.
           </p>
           <p className='text-card-foreground leading-relaxed'>
             My academic background includes a Master's in Computer Science and Engineering in IST,
             and have published peer-reviewed research on privacy-preserving architectures for
             human-robot interaction using blockchain, demonstrating experience in research, system
-            design, and experimental validation. I am seeking to deepen my research contributions in
-            large language models, LLMs learning and training through PhD study.
+            design, and experimental validation.
           </p>
           <div className='flex gap-3 pt-4'>
             <Button
