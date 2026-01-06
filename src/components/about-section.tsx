@@ -1,53 +1,55 @@
-import { Github, Linkedin, FileText, ExternalLink } from "lucide-react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
+import { Github, Linkedin, FileText, ExternalLink } from 'lucide-react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 
 export function AboutSection() {
   return (
-    <div className="space-y-8">
+    <div className='space-y-8'>
       {/* About Me Card */}
-      <Card className="bg-card backdrop-blur-sm border-border">
+      <Card className='bg-card backdrop-blur-sm border-border'>
         <CardHeader>
-          <CardTitle className="text-2xl text-primary">About Me</CardTitle>
+          <CardTitle className='text-2xl text-primary'>About Me</CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
-          <p className="text-card-foreground leading-relaxed">
-            Senior Software Engineer with 9 years of professional experience including 2+ years of hands-on work in AI
-            systems, specializing in LLM-based AI agents. Currently part of the AI team at PagerDuty, where I design and
-            evaluate production-grade AI agents using state-of-the-art LLMs, lead MCP and agent-to-agent (A2A)
-            integrations, and develop LLM evaluation pipelines (LLM-as-Judge for classification and reasoning tasks), as
-            well as some of our core AI Agents.
+        <CardContent className='space-y-4'>
+          <p className='text-card-foreground leading-relaxed'>
+            Senior Software Engineer with 9 years of professional experience including 2+ years of
+            hands-on work in AI systems, specializing in LLM-based AI agents. Currently part of the
+            AI team at PagerDuty, where I design and evaluate production-grade AI agents using
+            state-of-the-art LLMs, lead MCP and agent-to-agent (A2A) integrations, and develop LLM
+            evaluation pipelines (LLM-as-Judge for classification and reasoning tasks), as well as
+            some of our core AI Agents.
           </p>
-          <p className="text-card-foreground leading-relaxed">
-            My academic background includes a Master's in Computer Science and Engineering in IST, and have published
-            peer-reviewed research on privacy-preserving architectures for human-robot interaction using blockchain,
-            demonstrating experience in research, system design, and experimental validation. I am seeking to deepen my
-            research contributions in large language models, LLMs learning and training through PhD study.
+          <p className='text-card-foreground leading-relaxed'>
+            My academic background includes a Master's in Computer Science and Engineering in IST,
+            and have published peer-reviewed research on privacy-preserving architectures for
+            human-robot interaction using blockchain, demonstrating experience in research, system
+            design, and experimental validation. I am seeking to deepen my research contributions in
+            large language models, LLMs learning and training through PhD study.
           </p>
-          <div className="flex gap-3 pt-4">
+          <div className='flex gap-3 pt-4'>
             <Button
-              variant="outline"
-              size="sm"
+              variant='outline'
+              size='sm'
               asChild
-              className="border-border hover:border-primary hover:bg-primary/10 bg-transparent"
+              className='border-border hover:border-primary hover:bg-primary/10 bg-transparent'
             >
               <a
-                href="https://www.linkedin.com/in/viktor-vasylkovskyi-708b1712b/"
-                target="_blank"
-                rel="noopener noreferrer"
+                href='https://www.linkedin.com/in/viktor-vasylkovskyi-708b1712b/'
+                target='_blank'
+                rel='noopener noreferrer'
               >
-                <Linkedin className="w-4 h-4 mr-2" />
+                <Linkedin className='w-4 h-4 mr-2' />
                 LinkedIn
               </a>
             </Button>
             <Button
-              variant="outline"
-              size="sm"
+              variant='outline'
+              size='sm'
               asChild
-              className="border-border hover:border-primary hover:bg-primary/10 bg-transparent"
+              className='border-border hover:border-primary hover:bg-primary/10 bg-transparent'
             >
-              <a href="https://github.com/vvasylkovskyi" target="_blank" rel="noopener noreferrer">
-                <Github className="w-4 h-4 mr-2" />
+              <a href='https://github.com/vvasylkovskyi' target='_blank' rel='noopener noreferrer'>
+                <Github className='w-4 h-4 mr-2' />
                 GitHub
               </a>
             </Button>
@@ -56,100 +58,102 @@ export function AboutSection() {
       </Card>
 
       {/* Academic Background Card */}
-      <Card className="bg-card backdrop-blur-sm border-border">
+      <Card className='bg-card backdrop-blur-sm border-border'>
         <CardHeader>
-          <CardTitle className="text-2xl text-primary">Academic Background</CardTitle>
-          <CardDescription className="text-muted-foreground">
+          <CardTitle className='text-2xl text-primary'>Academic Background</CardTitle>
+          <CardDescription className='text-muted-foreground'>
             Instituto Superior Técnico (IST) — Lisbon, Portugal
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-6">
+        <CardContent className='space-y-6'>
           <div>
-            <h3 className="text-lg font-semibold text-foreground mb-2">
+            <h3 className='text-lg font-semibold text-foreground mb-2'>
               Master of Science in Computer Science and Engineering
             </h3>
-            <p className="text-sm text-muted-foreground mb-4">
-              Focus areas: Blockchain, Distributed Systems, Software and Network Security, Privacy in Human–Robot
-              Interaction
+            <p className='text-sm text-muted-foreground mb-4'>
+              Focus areas: Blockchain, Distributed Systems, Software and Network Security, Privacy
+              in Human–Robot Interaction
             </p>
           </div>
 
           <div>
-            <h4 className="text-base font-semibold text-foreground mb-2">Thesis Topic</h4>
-            <p className="text-card-foreground leading-relaxed">
-              Improving privacy in human–robot interaction through blockchain-based architectures, developed with
-              Privacy by Design principles in a healthcare environment (Portuguese Institute of Oncology).
+            <h4 className='text-base font-semibold text-foreground mb-2'>Thesis Topic</h4>
+            <p className='text-card-foreground leading-relaxed'>
+              Improving privacy in human–robot interaction through blockchain-based architectures,
+              developed with Privacy by Design principles in a healthcare environment (Portuguese
+              Institute of Oncology).
             </p>
           </div>
 
           <div>
-            <h4 className="text-base font-semibold text-foreground mb-2">Thesis Overview</h4>
-            <p className="text-card-foreground leading-relaxed">
-              The recent interactions between humans and robots appear to have problems regarding humans privacy. The
-              project's aim is to improve privacy in interaction between robots and humans using Blockchain technology.
-              In other words, project is developed with Privacy by Design in mind. Health Care environment - IPO -
-              Portuguese Institute of Oncology Technologies.
+            <h4 className='text-base font-semibold text-foreground mb-2'>Thesis Overview</h4>
+            <p className='text-card-foreground leading-relaxed'>
+              The recent interactions between humans and robots appear to have problems regarding
+              humans privacy. The project's aim is to improve privacy in interaction between robots
+              and humans using Blockchain technology. In other words, project is developed with
+              Privacy by Design in mind. Health Care environment - IPO - Portuguese Institute of
+              Oncology Technologies.
             </p>
           </div>
 
           <div>
-            <h4 className="text-base font-semibold text-foreground mb-3">Publications</h4>
-            <div className="space-y-3">
-              <div className="flex flex-wrap gap-2 mb-4">
+            <h4 className='text-base font-semibold text-foreground mb-3'>Publications</h4>
+            <div className='space-y-3'>
+              <div className='flex flex-wrap gap-2 mb-4'>
                 <Button
-                  variant="outline"
-                  size="sm"
+                  variant='outline'
+                  size='sm'
                   asChild
-                  className="border-border hover:border-primary hover:bg-primary/10 bg-transparent"
+                  className='border-border hover:border-primary hover:bg-primary/10 bg-transparent'
                 >
-                  <a href="/documents/thesis.pdf" download>
-                    <FileText className="w-4 h-4 mr-2" />
+                  <a href='/documents/thesis.pdf' download>
+                    <FileText className='w-4 h-4 mr-2' />
                     Download Thesis
                   </a>
                 </Button>
                 <Button
-                  variant="outline"
-                  size="sm"
+                  variant='outline'
+                  size='sm'
                   asChild
-                  className="border-border hover:border-primary hover:bg-primary/10 bg-transparent"
+                  className='border-border hover:border-primary hover:bg-primary/10 bg-transparent'
                 >
-                  <a href="/documents/thesis-abstract.pdf" download>
-                    <FileText className="w-4 h-4 mr-2" />
+                  <a href='/documents/thesis-abstract.pdf' download>
+                    <FileText className='w-4 h-4 mr-2' />
                     Download Abstract
                   </a>
                 </Button>
               </div>
-              <div className="text-sm text-card-foreground space-y-2">
-                <p className="leading-relaxed">
-                  •{" "}
+              <div className='text-sm text-card-foreground space-y-2'>
+                <div className='space-y-2'>
                   <a
-                    href="https://www.researchgate.net/publication/347779499_BlockRobot_Increasing_Privacy_in_Human_Robot_Interaction_by_Using_Blockchain"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary hover:underline inline-flex items-center gap-1"
+                    href='https://www.researchgate.net/publication/347779499_BlockRobot_Increasing_Privacy_in_Human_Robot_Interaction_by_Using_Blockchain'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='flex items-start gap-2 text-sm text-primary hover:text-primary/80 transition-colors'
                   >
-                    BlockRobot: Increasing Privacy in Human Robot Interaction by Using Blockchain
-                    <ExternalLink className="w-3 h-3" />
+                    <ExternalLink className='w-4 h-4 mt-0.5 flex-shrink-0' />
+                    <span>
+                      BlockRobot: Increasing Privacy in Human Robot Interaction by Using Blockchain
+                    </span>
                   </a>
-                </p>
-                <p className="leading-relaxed">
-                  •{" "}
                   <a
-                    href="https://www.researchgate.net/publication/349152707_Designing_and_Validating_a_Blockchain-based_Architecture_to_Enforce_Privacy_in_Human_Robot_Interaction"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary hover:underline inline-flex items-center gap-1"
+                    href='https://www.researchgate.net/publication/349152707_Designing_and_Validating_a_Blockchain-based_Architecture_to_Enforce_Privacy_in_Human_Robot_Interaction'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='flex items-start gap-2 text-sm text-primary hover:text-primary/80 transition-colors'
                   >
-                    Designing and Validating a Blockchain-based Architecture to Enforce Privacy in Human Robot
-                    Interaction
-                    <ExternalLink className="w-3 h-3" />
+                    <ExternalLink className='w-4 h-4 mt-0.5 flex-shrink-0' />
+                    <span>
+                      Designing and Validating a Blockchain-based Architecture to Enforce Privacy in
+                      Human Robot Interaction
+                    </span>
                   </a>
-                </p>
+                </div>
               </div>
             </div>
           </div>
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }
