@@ -1,11 +1,11 @@
-"use client"
-import { Header } from "@/components/header";
+'use client';
+import { Header } from '@/components/header';
 // import { Phone, MapPin, Github, Linkedin, ExternalLink } from "lucide-react"
 // import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 // import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 // import { Badge } from "@/components/ui/badge"
 // import { Button } from "@/components/ui/button"
-import { PortfolioContent } from "@/components/portfolio-content"
+import { PortfolioContent } from '@/components/portfolio-content';
 
 export default function Portfolio() {
   return (
@@ -17,7 +17,4 @@ export default function Portfolio() {
       {/* <Footer /> */}
     </div>
   );
-
-
-  
 }

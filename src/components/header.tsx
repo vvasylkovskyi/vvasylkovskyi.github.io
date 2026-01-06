@@ -1,11 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
-import { Star, Menu, X } from 'lucide-react';
+import { Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/theme-toggle';
-import { useState } from 'react';
 
 // URLs
 const GITHUB_URL = 'https://github.com/Ship-Infra/ship-infra-project';
@@ -15,7 +13,6 @@ const BRAND_NAME = 'Viktor Vasylkovskyi';
 const STAR_BUTTON_TEXT = 'Star on GitHub';
 
 export function Header() {
-
   return (
     <header className='sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60'>
       <div className='container mx-auto flex h-16 items-center justify-between px-4'>
