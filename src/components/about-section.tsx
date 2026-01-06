@@ -62,7 +62,7 @@ export function AboutSection() {
         <CardHeader>
           <CardTitle className='text-2xl text-primary'>Academic Background</CardTitle>
           <CardDescription className='text-muted-foreground'>
-            Instituto Superior Técnico (IST) — Lisbon, Portugal
+            Instituto Superior Técnico (IST) - Lisbon, Portugal
           </CardDescription>
         </CardHeader>
         <CardContent className='space-y-6'>
@@ -72,14 +72,14 @@ export function AboutSection() {
             </h3>
             <p className='text-sm text-muted-foreground mb-4'>
               Focus areas: Blockchain, Distributed Systems, Software and Network Security, Privacy
-              in Human–Robot Interaction
+              in Human-Robot Interaction
             </p>
           </div>
 
           <div>
             <h4 className='text-base font-semibold text-foreground mb-2'>Thesis Topic</h4>
             <p className='text-card-foreground leading-relaxed'>
-              Improving privacy in human–robot interaction through blockchain-based architectures,
+              Improving privacy in human-robot interaction through blockchain-based architectures,
               developed with Privacy by Design principles in a healthcare environment (Portuguese
               Institute of Oncology).
             </p>
@@ -151,6 +151,69 @@ export function AboutSection() {
                 </div>
               </div>
             </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Open Source Contributions Card */}
+      <Card className='bg-card backdrop-blur-sm border-border'>
+        <CardHeader>
+          <div className='flex items-center gap-2'>
+            <CardTitle className='text-2xl text-primary'>Open Source Contributions</CardTitle>
+          </div>
+          <CardDescription className='text-muted-foreground'>
+            Ship Infra - Practical AWS Infrastructure Education
+          </CardDescription>
+        </CardHeader>
+        <CardContent className='space-y-4'>
+          <p className='text-card-foreground leading-relaxed'>
+            Author and maintainer of{' '}
+            <a
+              href='https://www.ship-infra.com/'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='text-primary hover:underline font-medium'
+            >
+              Ship Infra
+            </a>
+            , an open-source educational project demonstrating how to deploy modern applications
+            securely on AWS. The project showcases production-grade infrastructure patterns using
+            Terraform and infrastructure-as-code best practices.
+          </p>
+
+          <p className='text-sm text-muted-foreground leading-relaxed pt-2'>
+            This project provides deep hands-on experience in cloud architecture, DevOps practices,
+            and infrastructure automation - skills directly applicable to building and scaling
+            production systems.
+          </p>
+
+          <div className='flex flex-wrap gap-3 pt-4'>
+            <Button
+              variant='outline'
+              size='sm'
+              asChild
+              className='border-border hover:border-primary hover:bg-primary/10 bg-transparent'
+            >
+              <a href='https://www.ship-infra.com/' target='_blank' rel='noopener noreferrer'>
+                <ExternalLink className='w-4 h-4 mr-2' />
+                View Project
+              </a>
+            </Button>
+            <Button
+              variant='outline'
+              size='sm'
+              asChild
+              className='border-border hover:border-primary hover:bg-primary/10 bg-transparent'
+            >
+              <a
+                href='https://github.com/Ship-Infra/ship-infra-project'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                <Github className='w-4 h-4 mr-2' />
+                View on GitHub
+              </a>
+            </Button>
           </div>
         </CardContent>
       </Card>
