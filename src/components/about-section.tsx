@@ -1,4 +1,4 @@
-import { Github, Linkedin, ExternalLink } from "lucide-react"
+import { Github, Linkedin, FileText, ExternalLink } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 
@@ -60,43 +60,91 @@ export function AboutSection() {
         <CardHeader>
           <CardTitle className="text-2xl text-primary">Academic Background</CardTitle>
           <CardDescription className="text-muted-foreground">
-            Instituto Superior Tecnico (IST), Av. Rovisco Pais 1, 1049-001 Lisboa
+            Instituto Superior Técnico (IST) — Lisbon, Portugal
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-6">
           <div>
-            <h3 className="text-lg font-semibold text-foreground mb-2">Master of Computer Science and Engineering</h3>
-            <p className="text-primary mb-3">Blockchain, Distributed Systems and Privacy in Human Robot Interactions</p>
-            <p className="text-card-foreground leading-relaxed mb-4">
+            <h3 className="text-lg font-semibold text-foreground mb-2">
+              Master of Science in Computer Science and Engineering
+            </h3>
+            <p className="text-sm text-muted-foreground mb-4">
+              Focus areas: Blockchain, Distributed Systems, Software and Network Security, Privacy in Human–Robot
+              Interaction
+            </p>
+          </div>
+
+          <div>
+            <h4 className="text-base font-semibold text-foreground mb-2">Thesis Topic</h4>
+            <p className="text-card-foreground leading-relaxed">
+              Improving privacy in human–robot interaction through blockchain-based architectures, developed with
+              Privacy by Design principles in a healthcare environment (Portuguese Institute of Oncology).
+            </p>
+          </div>
+
+          <div>
+            <h4 className="text-base font-semibold text-foreground mb-2">Thesis Overview</h4>
+            <p className="text-card-foreground leading-relaxed">
               The recent interactions between humans and robots appear to have problems regarding humans privacy. The
               project's aim is to improve privacy in interaction between robots and humans using Blockchain technology.
               In other words, project is developed with Privacy by Design in mind. Health Care environment - IPO -
               Portuguese Institute of Oncology Technologies.
             </p>
-            <div className="space-y-2">
-              <p className="text-sm font-semibold text-card-foreground">Published Papers:</p>
-              <div className="space-y-2">
-                <a
-                  href="https://www.researchgate.net/publication/347779499_BlockRobot_Increasing_Privacy_in_Human_Robot_Interaction_by_Using_Blockchain"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-start gap-2 text-sm text-primary hover:text-primary/80 transition-colors"
+          </div>
+
+          <div>
+            <h4 className="text-base font-semibold text-foreground mb-3">Publications</h4>
+            <div className="space-y-3">
+              <div className="flex flex-wrap gap-2 mb-4">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  asChild
+                  className="border-border hover:border-primary hover:bg-primary/10 bg-transparent"
                 >
-                  <ExternalLink className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                  <span>BlockRobot: Increasing Privacy in Human Robot Interaction by Using Blockchain</span>
-                </a>
-                <a
-                  href="https://www.researchgate.net/publication/349152707_Designing_and_Validating_a_Blockchain-based_Architecture_to_Enforce_Privacy_in_Human_Robot_Interaction"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-start gap-2 text-sm text-primary hover:text-primary/80 transition-colors"
+                  <a href="/documents/thesis.pdf" download>
+                    <FileText className="w-4 h-4 mr-2" />
+                    Download Thesis
+                  </a>
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  asChild
+                  className="border-border hover:border-primary hover:bg-primary/10 bg-transparent"
                 >
-                  <ExternalLink className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                  <span>
+                  <a href="/documents/thesis-abstract.pdf" download>
+                    <FileText className="w-4 h-4 mr-2" />
+                    Download Abstract
+                  </a>
+                </Button>
+              </div>
+              <div className="text-sm text-card-foreground space-y-2">
+                <p className="leading-relaxed">
+                  •{" "}
+                  <a
+                    href="https://www.researchgate.net/publication/347779499_BlockRobot_Increasing_Privacy_in_Human_Robot_Interaction_by_Using_Blockchain"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline inline-flex items-center gap-1"
+                  >
+                    BlockRobot: Increasing Privacy in Human Robot Interaction by Using Blockchain
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </p>
+                <p className="leading-relaxed">
+                  •{" "}
+                  <a
+                    href="https://www.researchgate.net/publication/349152707_Designing_and_Validating_a_Blockchain-based_Architecture_to_Enforce_Privacy_in_Human_Robot_Interaction"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline inline-flex items-center gap-1"
+                  >
                     Designing and Validating a Blockchain-based Architecture to Enforce Privacy in Human Robot
                     Interaction
-                  </span>
-                </a>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </p>
               </div>
             </div>
           </div>
