@@ -5,21 +5,21 @@ A modern, responsive portfolio website built with React, TypeScript, and Tailwin
 ## Development
 
 Install dependencies:
-```bash
+\`\`\`bash
 npm install
-```
+\`\`\`
 
 Run development server:
-```bash
+\`\`\`bash
 npm run dev
-```
+\`\`\`
 
 ## Build for GitHub Pages
 
 Build the project:
-```bash
+\`\`\`bash
 npm run build
-```
+\`\`\`
 
 This will create a `dist` folder with the compiled `index.html` and assets.
 
