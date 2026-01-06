@@ -48,14 +48,12 @@ export const viewport: Viewport = {
 // eslint-disable-next-line no-undef
 export default function Layout({ children }: LayoutProps<'/'>) {
   return (
-        <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
+    <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
       <SettingsProvider>
-      <html lang='en' className={montserratFont.className} suppressHydrationWarning>
-        <body className='flex flex-col min-h-screen'>
-          {children}
-        </body>
-      </html>
-            </SettingsProvider>
+        <html lang='en' className={montserratFont.className} suppressHydrationWarning>
+          <body className='flex flex-col min-h-screen'>{children}</body>
+        </html>
+      </SettingsProvider>
     </ThemeProvider>
   );
 }
