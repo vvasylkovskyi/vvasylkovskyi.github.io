@@ -8,7 +8,7 @@ export function PortfolioHeader() {
         <div className='flex flex-col md:flex-row items-center gap-8'>
           <div className='shrink-0'>
             <Image
-              src='/professional-headshot.png'
+              src='/profile_picture.png'
               alt='Viktor Vasylkovskyi'
               width={160}
               height={160}
