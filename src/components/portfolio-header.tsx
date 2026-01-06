@@ -73,7 +73,7 @@ export function PortfolioHeader() {
         <DialogContent className='max-w-3xl p-0 overflow-hidden'>
           <div className='relative w-full aspect-square'>
             <Image
-              src='/profile_picture.png'
+              src='/professional-headshot.png'
               alt='Viktor Vasylkovskyi'
               fill
               className='object-cover'
