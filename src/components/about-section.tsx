@@ -162,19 +162,19 @@ export function AboutSection() {
             <CardTitle className='text-2xl text-primary'>Open Source Contributions</CardTitle>
           </div>
           <CardDescription className='text-muted-foreground'>
-            Ship Infra - Practical AWS Infrastructure Education
+            Infrastructure as Code Toolbox - Practical AWS Infrastructure Education
           </CardDescription>
         </CardHeader>
         <CardContent className='space-y-4'>
           <p className='text-card-foreground leading-relaxed'>
             Author and maintainer of{' '}
             <a
-              href='https://www.ship-infra.com/'
+              href='https://www.iac-toolbox.com/'
               target='_blank'
               rel='noopener noreferrer'
               className='text-primary hover:underline font-medium'
             >
-              Ship Infra
+              Infrastructure as Code Toolbox
             </a>
             , an open-source educational project demonstrating how to deploy modern applications
             securely on AWS. The project showcases production-grade infrastructure patterns using
@@ -194,7 +194,7 @@ export function AboutSection() {
               asChild
               className='border-border hover:border-primary hover:bg-primary/10 bg-transparent'
             >
-              <a href='https://www.ship-infra.com/' target='_blank' rel='noopener noreferrer'>
+              <a href='https://www.iac-toolbox.com/' target='_blank' rel='noopener noreferrer'>
                 <ExternalLink className='w-4 h-4 mr-2' />
                 View Project
               </a>
@@ -206,7 +206,7 @@ export function AboutSection() {
               className='border-border hover:border-primary hover:bg-primary/10 bg-transparent'
             >
               <a
-                href='https://github.com/Ship-Infra/ship-infra-project'
+                href='https://github.com/Iac-Toolbox/iac-toolbox-project'
                 target='_blank'
                 rel='noopener noreferrer'
               >
