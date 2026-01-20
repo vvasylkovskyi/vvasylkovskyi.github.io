@@ -159,11 +159,71 @@ export function AboutSection() {
       <Card className='bg-card backdrop-blur-sm border-border'>
         <CardHeader>
           <div className='flex items-center gap-2'>
-            <CardTitle className='text-2xl text-primary'>Open Source Contributions</CardTitle>
+            <CardTitle className='text-2xl text-primary'>
+              BarkGPT - Educational Small Language Model (SLM)
+            </CardTitle>
           </div>
-          <CardDescription className='text-muted-foreground'>
-            Infrastructure as Code Toolbox - Practical AWS Infrastructure Education
-          </CardDescription>
+          <CardDescription className='text-muted-foreground'>Open Source Project</CardDescription>
+        </CardHeader>
+        <CardContent className='space-y-4'>
+          <p className='text-card-foreground leading-relaxed'>
+            Author and maintainer of{' '}
+            <a
+              href='https://www.bark-slm.com/'
+              target='_blank'
+              rel='noopener noreferrer'
+              className='text-primary hover:underline font-medium'
+            >
+              BarkGPT
+            </a>
+            - an educational GPT-style language model built from scratch to explore transformer
+            internals, training loops, and inference mechanics without heavy abstractions.
+          </p>
+
+          <p className='text-sm text-muted-foreground leading-relaxed pt-2'>
+            BarkGPT serves as a learning tool for understanding the fundamentals of large language
+            models (LLMs) and transformer architectures, providing insights into model training and
+            deployment.
+          </p>
+
+          <div className='flex flex-wrap gap-3 pt-4'>
+            <Button
+              variant='outline'
+              size='sm'
+              asChild
+              className='border-border hover:border-primary hover:bg-primary/10 bg-transparent'
+            >
+              <a href='https://www.bark-slm.com/' target='_blank' rel='noopener noreferrer'>
+                <ExternalLink className='w-4 h-4 mr-2' />
+                View Project
+              </a>
+            </Button>
+            <Button
+              variant='outline'
+              size='sm'
+              asChild
+              className='border-border hover:border-primary hover:bg-primary/10 bg-transparent'
+            >
+              <a
+                href='https://github.com/vvasylkovskyi/barkgpt'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                <Github className='w-4 h-4 mr-2' />
+                View on GitHub
+              </a>
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+      <Card className='bg-card backdrop-blur-sm border-border'>
+        <CardHeader>
+          <div className='flex items-center gap-2'>
+            <CardTitle className='text-2xl text-primary'>
+              Infrastructure as Code Toolbox - Practical AWS Infrastructure Education
+            </CardTitle>
+          </div>
+          <CardDescription className='text-muted-foreground'>Open Source Project</CardDescription>
         </CardHeader>
         <CardContent className='space-y-4'>
           <p className='text-card-foreground leading-relaxed'>
