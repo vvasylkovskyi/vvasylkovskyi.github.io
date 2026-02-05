@@ -61,13 +61,13 @@ export default function CVPage() {
                 <span>linkedin.com/in/viktor-vasylkovskyi</span>
               </a>
               <a
-                href='https://vvasylkovskyi.com'
+                href='https://www.viktorvasylkovskyi.com'
                 target='_blank'
                 rel='noopener noreferrer'
                 className='flex items-center gap-2 hover:text-primary transition-colors'
               >
                 <ExternalLink className='w-3.5 h-3.5' />
-                <span>vvasylkovskyi.com</span>
+                <span>viktorvasylkovskyi.com</span>
               </a>
               <a
                 href='https://github.com/vvasylkovskyi'
