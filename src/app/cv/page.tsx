@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { Phone, MapPin, Linkedin, Github, Mail, ExternalLink, FileText } from 'lucide-react';
 import { ThemeToggle } from '@/components/theme-toggle';
-import { PdfDownloadButton } from '@/components/pdf-download-button';
 
 export const metadata = {
   title: 'CV - Viktor Vasylkovskyi',
@@ -13,7 +12,6 @@ export default function CVPage() {
     <div className='min-h-screen bg-background pdf-export'>
       {/* Header with theme toggle and PDF download */}
       <div className='fixed top-4 right-4 z-50 print:hidden flex items-center gap-2'>
-        <PdfDownloadButton />
         <ThemeToggle />
       </div>
 
