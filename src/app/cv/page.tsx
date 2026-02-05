@@ -4,14 +4,14 @@ import { ThemeToggle } from '@/components/theme-toggle';
 
 export const metadata = {
   title: 'CV - Viktor Vasylkovskyi',
-  description: 'Curriculum Vitae of Viktor Vasylkovskyi - Senior Software Engineer',
+  description: 'Curriculum Vitae of Viktor Vasylkovskyi - Staff Software Engineer',
 };
 
 export default function CVPage() {
   return (
     <div className='min-h-screen bg-background'>
       {/* Header with theme toggle */}
-      <div className='fixed top-4 right-4 z-50'>
+      <div className='fixed top-4 right-4 z-50 print:hidden'>
         <ThemeToggle />
       </div>
 
@@ -30,7 +30,7 @@ export default function CVPage() {
           <div className='flex-1'>
             <h1 className='text-3xl font-bold text-foreground mb-1'>Viktor Vasylkovskyi</h1>
             <p className='text-lg text-primary font-medium mb-3'>
-              Senior Software Engineer | AI Agents & LLM Systems
+              Staff Software Engineer | Full-Stack & AI Systems
             </p>
             <div className='grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-muted-foreground'>
               <a
@@ -77,13 +77,13 @@ export default function CVPage() {
         <section className='py-5 border-b border-border'>
           <h2 className='text-lg font-bold text-primary mb-3 uppercase tracking-wide'>About</h2>
           <p className='text-sm text-foreground leading-relaxed'>
-            Senior Software Engineer with 9 years of professional experience including 2+ years of
-            hands-on work in AI systems, specializing in LLM-based AI agents. Currently part of the
-            AI team at PagerDuty, designing and evaluating production-grade AI agents using
-            state-of-the-art LLMs, leading MCP and agent-to-agent (A2A) integrations, and developing
-            LLM evaluation pipelines. Academic background includes a Master's in Computer Science
-            and Engineering from IST, with published peer-reviewed research on privacy-preserving
-            architectures for human-robot interaction using blockchain.
+            Staff-level Software Engineer with <strong>10+ years of commercial experience</strong> in frontend engineering 
+            and <strong>3+ years of hands-on full-stack experience in AI systems</strong>. Proven track record of leading 
+            large-scale distributed systems design, mentoring engineering teams, and driving cross-functional initiatives. 
+            Deep expertise in <strong>TypeScript, React, Next.js, Node.js</strong>, and modern build tools (Webpack, Vite). 
+            Strong background in <strong>cloud-native architectures (AWS, Kubernetes, Docker)</strong> and infrastructure-as-code. 
+            Active open-source contributor with published peer-reviewed research. Passionate about code quality, 
+            security-first development, and building high-performing engineering cultures.
           </p>
         </section>
 
@@ -108,14 +108,16 @@ export default function CVPage() {
               </div>
               <ul className='text-sm text-muted-foreground mt-2 space-y-1 list-disc list-inside'>
                 <li>
-                  Core contributor to LLM-based AI agent systems, leading MCP and A2A integrations
+                  <strong>Led and designed distributed architecture</strong> for Agent-to-Agent (A2A) and Web-AI chat experiences using SSE, Webhooks, and Kafka async messaging
                 </li>
                 <li>
-                  Designed LLM evaluation pipelines (LLM-as-Judge) for classification and reasoning
-                  tasks
+                  Drove consensus with senior leads to define large-scale engineering solutions; mentored junior engineers on AI systems design
                 </li>
                 <li>
-                  Hands-on work with LangGraph, FastAPI, FastMCP, Google A2A, Claude/ChatGPT models
+                  Designed LLM evaluation pipelines (LLM-as-Judge) for classification and reasoning tasks
+                </li>
+                <li>
+                  Tech: LangGraph, FastAPI, FastMCP, Google A2A, Python, TypeScript, Kafka, AWS
                 </li>
               </ul>
             </div>
@@ -133,13 +135,16 @@ export default function CVPage() {
               </div>
               <ul className='text-sm text-muted-foreground mt-2 space-y-1 list-disc list-inside'>
                 <li>
-                  Full-stack engineer on AI-powered engineering intelligence platform, leading
-                  frontend development
+                  <strong>Led frontend team of 4 engineers</strong>, establishing design system consistency and code quality standards
                 </li>
-                <li>Owned BFF service (Node.js/Express) from design to production</li>
                 <li>
-                  Designed and deployed AI-driven product features across backend, frontend, and
-                  CI/CD
+                  <strong>Led RBAC design and implementation</strong>, collaborating closely with Cerbos team on authorization architecture
+                </li>
+                <li>
+                  Regularly engaged with customers to understand pain points and inform product direction
+                </li>
+                <li>
+                  Owned BFF service (Node.js/Express) end-to-end; deployed AI-driven features across the stack
                 </li>
               </ul>
             </div>
@@ -157,11 +162,16 @@ export default function CVPage() {
               </div>
               <ul className='text-sm text-muted-foreground mt-2 space-y-1 list-disc list-inside'>
                 <li>
-                  Led architecture and development of JavaScript/TypeScript systems for video player
-                  and embedded platforms
+                  <strong>Led multi-device onboarding</strong> for video platform across set-top boxes, Xbox, PlayStation, smart TVs, and web
                 </li>
                 <li>
-                  Drove cross-team technical initiatives, focusing on scalability and performance
+                  Deep expertise in headless TypeScript video player technology (Google Shaka Player)
+                </li>
+                <li>
+                  <strong>Drove device integration initiatives</strong>, collaborating with cross-department engineering teams
+                </li>
+                <li>
+                  <strong>Owned technical workshops</strong> to onboard client teams on video player technology and best practices
                 </li>
               </ul>
             </div>
@@ -315,20 +325,19 @@ export default function CVPage() {
               </h2>
               <div className='text-xs text-muted-foreground space-y-1'>
                 <p>
-                  <span className='font-medium text-foreground'>AI/ML:</span> LangGraph, LLM
-                  Evaluation, AI Agents, MCP, A2A
+                  <span className='font-medium text-foreground'>Languages:</span> TypeScript, Python, JavaScript, Go
                 </p>
                 <p>
-                  <span className='font-medium text-foreground'>Languages:</span> TypeScript,
-                  Python, JavaScript, Go
+                  <span className='font-medium text-foreground'>Frontend:</span> React, Next.js, shadcn/ui, Webpack, Vite, Node.js
                 </p>
                 <p>
-                  <span className='font-medium text-foreground'>Frontend:</span> React, Next.js,
-                  Node.js
+                  <span className='font-medium text-foreground'>AI/ML:</span> LangGraph, LLM Evaluation, AI Agents, MCP, A2A, Kafka
                 </p>
                 <p>
-                  <span className='font-medium text-foreground'>Infrastructure:</span> AWS,
-                  Terraform, Docker, CI/CD
+                  <span className='font-medium text-foreground'>Infrastructure:</span> AWS, Kubernetes, Docker, Terraform, CI/CD
+                </p>
+                <p>
+                  <span className='font-medium text-foreground'>Leadership:</span> Team mentorship, Technical design, Cross-functional collaboration
                 </p>
               </div>
             </div>
