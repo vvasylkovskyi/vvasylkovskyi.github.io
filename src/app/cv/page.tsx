@@ -77,11 +77,11 @@ export default function CVPage() {
         <section className='py-5 border-b border-border'>
           <h2 className='text-lg font-bold text-primary mb-3 uppercase tracking-wide'>About</h2>
           <p className='text-sm text-foreground leading-relaxed'>
-            Software Engineer with <strong>10+ years of commercial experience</strong> in frontend engineering 
-            and <strong>3+ years of hands-on full-stack experience in AI systems</strong>. Proven track record of leading 
+            Software Engineer with 10+ years of commercial experience in frontend engineering 
+            and 3+ years of hands-on full-stack experience in AI systems. Proven track record of leading 
             large-scale distributed systems design, mentoring engineering teams, and driving cross-functional initiatives. 
-            Deep expertise in <strong>TypeScript, React, Next.js, Node.js</strong>, and modern build tools (Webpack, Vite). 
-            Strong background in <strong>cloud-native architectures (AWS, Kubernetes, Docker)</strong> and infrastructure-as-code. 
+            Deep expertise in TypeScript, React, Next.js, Node.js, and modern build tools (Webpack, Vite). 
+            Strong background in cloud-native architectures (AWS, Kubernetes, Docker) and infrastructure-as-code. 
             Active open-source contributor with published peer-reviewed research. Passionate about code quality, 
             security-first development, and building high-performing engineering cultures.
           </p>
@@ -108,7 +108,7 @@ export default function CVPage() {
               </div>
               <ul className='text-sm text-muted-foreground mt-2 space-y-1 list-disc list-inside'>
                 <li>
-                  <strong>Led and designed distributed architecture</strong> for Agent-to-Agent (A2A) and Web-AI chat experiences using SSE, Webhooks, and Kafka async messaging
+                  Led and designed distributed architecture for Agent-to-Agent (A2A) and Web-AI chat experiences using SSE, Webhooks, and Kafka async messaging
                 </li>
                 <li>
                   Drove consensus with senior leads to define large-scale engineering solutions; mentored junior engineers on AI systems design
@@ -126,7 +126,7 @@ export default function CVPage() {
             <div>
               <div className='flex justify-between items-start gap-2 mb-1'>
                 <div>
-                  <h3 className='font-semibold text-foreground'>Senior Product Engineer</h3>
+                  <h3 className='font-semibold text-foreground'>Senior Product Engineer — Frontend</h3>
                   <p className='text-sm text-primary'>Rely.io</p>
                 </div>
                 <span className='text-xs text-muted-foreground whitespace-nowrap'>
@@ -135,10 +135,10 @@ export default function CVPage() {
               </div>
               <ul className='text-sm text-muted-foreground mt-2 space-y-1 list-disc list-inside'>
                 <li>
-                  <strong>Led frontend team of 4 engineers</strong>, establishing design system consistency and code quality standards
+                  Led frontend team of 4 engineers, establishing design system consistency and code quality standards
                 </li>
                 <li>
-                  <strong>Led RBAC design and implementation</strong>, collaborating closely with Cerbos team on authorization architecture
+                  Led RBAC design and implementation, collaborating closely with Cerbos team on authorization architecture
                 </li>
                 <li>
                   Regularly engaged with customers to understand pain points and inform product direction
@@ -153,7 +153,7 @@ export default function CVPage() {
             <div>
               <div className='flex justify-between items-start gap-2 mb-1'>
                 <div>
-                  <h3 className='font-semibold text-foreground'>Senior Software Engineer</h3>
+                  <h3 className='font-semibold text-foreground'>Senior Software Engineer — PeacockTV, SkyShowtime, Showmax</h3>
                   <p className='text-sm text-primary'>Sky</p>
                 </div>
                 <span className='text-xs text-muted-foreground whitespace-nowrap'>
@@ -162,16 +162,16 @@ export default function CVPage() {
               </div>
               <ul className='text-sm text-muted-foreground mt-2 space-y-1 list-disc list-inside'>
                 <li>
-                  <strong>Led multi-device onboarding</strong> for video platform across set-top boxes, Xbox, PlayStation, smart TVs, and web
+                  Led multi-device onboarding for video platform across set-top boxes, Xbox, PlayStation, smart TVs, and web
                 </li>
                 <li>
                   Deep expertise in headless TypeScript video player technology (Google Shaka Player)
                 </li>
                 <li>
-                  <strong>Drove device integration initiatives</strong>, collaborating with cross-department engineering teams
+                  Drove device integration initiatives, collaborating with cross-department engineering teams
                 </li>
                 <li>
-                  <strong>Owned technical workshops</strong> to onboard client teams on video player technology and best practices
+                  Owned technical workshops to onboard client teams on video player technology and best practices
                 </li>
               </ul>
             </div>
