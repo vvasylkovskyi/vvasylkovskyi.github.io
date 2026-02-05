@@ -4,7 +4,7 @@ import { ThemeToggle } from '@/components/theme-toggle';
 
 export const metadata = {
   title: 'CV - Viktor Vasylkovskyi',
-  description: 'Curriculum Vitae of Viktor Vasylkovskyi - Staff Software Engineer',
+  description: 'Curriculum Vitae of Viktor Vasylkovskyi - Software Engineer',
 };
 
 export default function CVPage() {
@@ -30,7 +30,7 @@ export default function CVPage() {
           <div className='flex-1'>
             <h1 className='text-3xl font-bold text-foreground mb-1'>Viktor Vasylkovskyi</h1>
             <p className='text-lg text-primary font-medium mb-3'>
-              Staff Software Engineer | Full-Stack & AI Systems
+              Software Engineer | Full-Stack & AI Systems
             </p>
             <div className='grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-muted-foreground'>
               <a
@@ -77,7 +77,7 @@ export default function CVPage() {
         <section className='py-5 border-b border-border'>
           <h2 className='text-lg font-bold text-primary mb-3 uppercase tracking-wide'>About</h2>
           <p className='text-sm text-foreground leading-relaxed'>
-            Staff-level Software Engineer with <strong>10+ years of commercial experience</strong> in frontend engineering 
+            Software Engineer with <strong>10+ years of commercial experience</strong> in frontend engineering 
             and <strong>3+ years of hands-on full-stack experience in AI systems</strong>. Proven track record of leading 
             large-scale distributed systems design, mentoring engineering teams, and driving cross-functional initiatives. 
             Deep expertise in <strong>TypeScript, React, Next.js, Node.js</strong>, and modern build tools (Webpack, Vite). 
