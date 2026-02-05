@@ -10,7 +10,7 @@ export const metadata = {
 
 export default function CVPage() {
   return (
-    <div className='min-h-screen bg-background'>
+    <div className='min-h-screen bg-background pdf-export'>
       {/* Header with theme toggle and PDF download */}
       <div className='fixed top-4 right-4 z-50 print:hidden flex items-center gap-2'>
         <PdfDownloadButton />
@@ -88,13 +88,14 @@ export default function CVPage() {
         <section className='py-5 border-b border-border'>
           <h2 className='text-lg font-bold text-primary mb-3 uppercase tracking-wide'>About</h2>
           <p className='text-sm text-foreground leading-relaxed'>
-            Software Engineer with 10+ years of commercial experience in frontend engineering 
-            and 3+ years of hands-on full-stack experience in AI systems. Proven track record of leading 
-            large-scale distributed systems design, mentoring engineering teams, and driving cross-functional initiatives. 
-            Deep expertise in TypeScript, React, Next.js, Node.js, and modern build tools (Webpack, Vite). 
-            Strong background in cloud-native architectures (AWS, Kubernetes, Docker) and infrastructure-as-code. 
-            Active open-source contributor with published peer-reviewed research. Passionate about code quality, 
-            security-first development, and building high-performing engineering cultures.
+            Software Engineer with 10+ years of commercial experience in frontend engineering and 3+
+            years of hands-on full-stack experience in AI systems. Proven track record of leading
+            large-scale distributed systems design, mentoring engineering teams, and driving
+            cross-functional initiatives. Deep expertise in TypeScript, React, Next.js, Node.js, and
+            modern build tools (Webpack, Vite). Strong background in cloud-native architectures
+            (AWS, Kubernetes, Docker) and infrastructure-as-code. Active open-source contributor
+            with published peer-reviewed research. Passionate about code quality, security-first
+            development, and building high-performing engineering cultures.
           </p>
         </section>
 
@@ -119,14 +120,14 @@ export default function CVPage() {
               </div>
               <ul className='text-sm text-muted-foreground mt-2 space-y-1 list-disc list-inside'>
                 <li>
-                  Lead and design distributed architecture for Agent-to-Agent (A2A) and Web-AI chat experiences using SSE, Webhooks, and Kafka async messaging
+                  Lead and design distributed architecture for Agent-to-Agent (A2A) and Web-AI chat
+                  experiences using SSE, Webhooks, and Kafka async messaging
                 </li>
                 <li>
-                  Drive consensus across AI domain teams to align all AI systems on common distributed architecture
+                  Drive consensus across AI domain teams to align all AI systems on common
+                  distributed architecture
                 </li>
-                <li>
-                  Design LLM evaluation pipelines (LLM-as-Judge) for classification tasks
-                </li>
+                <li>Design LLM evaluation pipelines (LLM-as-Judge) for classification tasks</li>
                 <li>
                   Tech: LangGraph, FastAPI, FastMCP, Google A2A, Python, TypeScript, Kafka, AWS
                 </li>
@@ -137,7 +138,9 @@ export default function CVPage() {
             <div>
               <div className='flex justify-between items-start gap-2 mb-1'>
                 <div>
-                  <h3 className='font-semibold text-foreground'>Senior Product Engineer — Frontend</h3>
+                  <h3 className='font-semibold text-foreground'>
+                    Senior Product Engineer — Frontend
+                  </h3>
                   <p className='text-sm text-primary'>Rely.io</p>
                 </div>
                 <span className='text-xs text-muted-foreground whitespace-nowrap'>
@@ -146,16 +149,20 @@ export default function CVPage() {
               </div>
               <ul className='text-sm text-muted-foreground mt-2 space-y-1 list-disc list-inside'>
                 <li>
-                  Led frontend team of 4 engineers, establishing design system consistency and code quality standards
+                  Led frontend team of 4 engineers, establishing design system consistency and code
+                  quality standards
                 </li>
                 <li>
-                  Led RBAC design and implementation, collaborating closely with third-party vendors for software integrations
+                  Led RBAC design and implementation, collaborating closely with third-party vendors
+                  for software integrations
                 </li>
                 <li>
-                  Regularly engaged with customers to understand pain points and inform product direction
+                  Regularly engaged with customers to understand pain points and inform product
+                  direction
                 </li>
                 <li>
-                  Owned all frontend apps (frontend, BFF); collaborated on building backend apps with backend product engineers
+                  Owned all frontend apps (frontend, BFF); collaborated on building backend apps
+                  with backend product engineers
                 </li>
               </ul>
             </div>
@@ -164,7 +171,9 @@ export default function CVPage() {
             <div>
               <div className='flex justify-between items-start gap-2 mb-1'>
                 <div>
-                  <h3 className='font-semibold text-foreground'>Senior Software Engineer — PeacockTV, SkyShowtime, Showmax</h3>
+                  <h3 className='font-semibold text-foreground'>
+                    Senior Software Engineer — PeacockTV, SkyShowtime, Showmax
+                  </h3>
                   <p className='text-sm text-primary'>Sky</p>
                 </div>
                 <span className='text-xs text-muted-foreground whitespace-nowrap'>
@@ -173,22 +182,26 @@ export default function CVPage() {
               </div>
               <ul className='text-sm text-muted-foreground mt-2 space-y-1 list-disc list-inside'>
                 <li>
-                  Led multi-device onboarding for video platform across set-top boxes, Xbox, PlayStation, smart TVs, and web
+                  Led multi-device onboarding for video platform across set-top boxes, Xbox,
+                  PlayStation, smart TVs, and web
                 </li>
                 <li>
-                  Deep expertise in headless TypeScript video technology — in-house video player library and Google Shaka Player
+                  Deep expertise in headless TypeScript video technology — in-house video player
+                  library and Google Shaka Player
                 </li>
                 <li>
-                  Drove device integration initiatives, collaborating with cross-department engineering teams
+                  Drove device integration initiatives, collaborating with cross-department
+                  engineering teams
                 </li>
                 <li>
-                  Owned technical workshops to onboard client teams on video player technology and best practices
+                  Owned technical workshops to onboard client teams on video player technology and
+                  best practices
                 </li>
               </ul>
             </div>
 
             {/* Sky Frontend */}
-            <div>
+            {/* <div>
               <div className='flex justify-between items-start gap-2 mb-1'>
                 <div>
                   <h3 className='font-semibold text-foreground'>Frontend Developer</h3>
@@ -200,13 +213,14 @@ export default function CVPage() {
               </div>
               <ul className='text-sm text-muted-foreground mt-2 space-y-1 list-disc list-inside'>
                 <li>
-                  Built core web app features including hero image and video player integration for video playback page (web and mobile)
+                  Built core web app features including hero image and video player integration for
+                  video playback page (web and mobile)
                 </li>
                 <li>
                   Tech: React, TypeScript, Node.js, HMAC, Web Vitals, performance optimization
                 </li>
               </ul>
-            </div>
+            </div> */}
           </div>
         </section>
 
@@ -219,7 +233,9 @@ export default function CVPage() {
                 Education
               </h2>
               <div className='mb-4'>
-                <h3 className='font-semibold text-foreground'>MSc Computer Science & Engineering</h3>
+                <h3 className='font-semibold text-foreground'>
+                  MSc Computer Science & Engineering
+                </h3>
                 <p className='text-sm text-primary'>Instituto Superior Técnico (IST)</p>
                 <p className='text-xs text-muted-foreground mb-2'>Lisbon, Portugal</p>
                 <p className='text-xs text-muted-foreground'>
@@ -334,19 +350,24 @@ export default function CVPage() {
               </h2>
               <div className='text-xs text-muted-foreground space-y-1'>
                 <p>
-                  <span className='font-medium text-foreground'>Languages:</span> TypeScript, Python, JavaScript, Elixir
+                  <span className='font-medium text-foreground'>Languages:</span> TypeScript,
+                  Python, JavaScript, Elixir
                 </p>
                 <p>
-                  <span className='font-medium text-foreground'>Frontend:</span> React, Next.js, shadcn/ui, Webpack, Vite, Node.js
+                  <span className='font-medium text-foreground'>Frontend:</span> React, Next.js,
+                  shadcn/ui, Webpack, Vite, Node.js
                 </p>
                 <p>
-                  <span className='font-medium text-foreground'>AI/ML:</span> LangGraph, LLM Evaluation, AI Agents, MCP, A2A, Kafka
+                  <span className='font-medium text-foreground'>AI/ML:</span> LangGraph, LLM
+                  Evaluation, AI Agents, MCP, A2A, Kafka
                 </p>
                 <p>
-                  <span className='font-medium text-foreground'>Infrastructure:</span> AWS, Kubernetes, Docker, Terraform, CI/CD
+                  <span className='font-medium text-foreground'>Infrastructure:</span> AWS,
+                  Kubernetes, Docker, Terraform, CI/CD
                 </p>
                 <p>
-                  <span className='font-medium text-foreground'>Leadership:</span> Team mentorship, Technical design, Cross-functional collaboration
+                  <span className='font-medium text-foreground'>Leadership:</span> Team mentorship,
+                  Technical design, Cross-functional collaboration
                 </p>
               </div>
             </div>
