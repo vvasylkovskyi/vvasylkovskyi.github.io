@@ -108,13 +108,13 @@ export default function CVPage() {
               </div>
               <ul className='text-sm text-muted-foreground mt-2 space-y-1 list-disc list-inside'>
                 <li>
-                  Led and designed distributed architecture for Agent-to-Agent (A2A) and Web-AI chat experiences using SSE, Webhooks, and Kafka async messaging
+                  Lead and design distributed architecture for Agent-to-Agent (A2A) and Web-AI chat experiences using SSE, Webhooks, and Kafka async messaging
                 </li>
                 <li>
-                  Drove consensus with senior leads to define large-scale engineering solutions; mentored junior engineers on AI systems design
+                  Drive consensus across AI domain teams to align all AI systems on common distributed architecture
                 </li>
                 <li>
-                  Designed LLM evaluation pipelines (LLM-as-Judge) for classification and reasoning tasks
+                  Design LLM evaluation pipelines (LLM-as-Judge) for classification tasks
                 </li>
                 <li>
                   Tech: LangGraph, FastAPI, FastMCP, Google A2A, Python, TypeScript, Kafka, AWS
@@ -138,13 +138,13 @@ export default function CVPage() {
                   Led frontend team of 4 engineers, establishing design system consistency and code quality standards
                 </li>
                 <li>
-                  Led RBAC design and implementation, collaborating closely with Cerbos team on authorization architecture
+                  Led RBAC design and implementation, collaborating closely with third-party vendors for software integrations
                 </li>
                 <li>
                   Regularly engaged with customers to understand pain points and inform product direction
                 </li>
                 <li>
-                  Owned BFF service (Node.js/Express) end-to-end; deployed AI-driven features across the stack
+                  Owned all frontend apps (frontend, BFF); collaborated on building backend apps with backend product engineers
                 </li>
               </ul>
             </div>
@@ -165,7 +165,7 @@ export default function CVPage() {
                   Led multi-device onboarding for video platform across set-top boxes, Xbox, PlayStation, smart TVs, and web
                 </li>
                 <li>
-                  Deep expertise in headless TypeScript video player technology (Google Shaka Player)
+                  Deep expertise in headless TypeScript video technology — in-house video player library and Google Shaka Player
                 </li>
                 <li>
                   Drove device integration initiatives, collaborating with cross-department engineering teams
@@ -189,12 +189,10 @@ export default function CVPage() {
               </div>
               <ul className='text-sm text-muted-foreground mt-2 space-y-1 list-disc list-inside'>
                 <li>
-                  Core contributor to large-scale streaming platforms (PeacockTV, SkyShowtime) in
-                  React, TypeScript, Node.js
+                  Built core web app features including hero image and video player integration for video playback page (web and mobile)
                 </li>
                 <li>
-                  Improved application performance by ~30%, led client-side security initiatives
-                  (HMAC, white-box cryptography)
+                  Tech: React, TypeScript, Node.js, HMAC, Web Vitals, performance optimization
                 </li>
               </ul>
             </div>
