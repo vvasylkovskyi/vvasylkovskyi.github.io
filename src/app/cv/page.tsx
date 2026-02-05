@@ -325,7 +325,7 @@ export default function CVPage() {
               </h2>
               <div className='text-xs text-muted-foreground space-y-1'>
                 <p>
-                  <span className='font-medium text-foreground'>Languages:</span> TypeScript, Python, JavaScript, Go
+                  <span className='font-medium text-foreground'>Languages:</span> TypeScript, Python, JavaScript, Elixir
                 </p>
                 <p>
                   <span className='font-medium text-foreground'>Frontend:</span> React, Next.js, shadcn/ui, Webpack, Vite, Node.js
