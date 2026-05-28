@@ -2,6 +2,8 @@
 
 import Link from 'next/link';
 import { Github, Linkedin } from 'lucide-react';
+import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/theme-toggle';
 
@@ -10,12 +12,33 @@ const GITHUB_URL = 'https://github.com/vvasylkovskyi';
 
 const BRAND_NAME = 'Viktor Vasylkovskyi';
 
-interface HeaderProps {
-  activeSection?: 'about' | 'experience';
-  onSectionChange?: (section: 'about' | 'experience') => void;
+function NavLinks() {
+  const searchParams = useSearchParams();
+  const activeSection = searchParams.get('section') ?? 'about';
+
+  return (
+    <>
+      <Button
+        asChild
+        variant={activeSection === 'about' ? 'secondary' : 'ghost'}
+        size='sm'
+        className='h-9'
+      >
+        <Link href='/?section=about'>About & Education</Link>
+      </Button>
+      <Button
+        asChild
+        variant={activeSection === 'experience' ? 'secondary' : 'ghost'}
+        size='sm'
+        className='h-9'
+      >
+        <Link href='/?section=experience'>Professional Experience</Link>
+      </Button>
+    </>
+  );
 }
 
-export function Header({ activeSection = 'about', onSectionChange }: HeaderProps) {
+export function Header() {
   return (
     <header className='sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60'>
       <div className='container mx-auto flex h-16 items-center justify-between px-4'>
@@ -24,22 +47,9 @@ export function Header({ activeSection = 'about', onSectionChange }: HeaderProps
         </Link>
 
         <nav className='hidden md:flex items-center gap-1'>
-          <Button
-            variant={activeSection === 'about' ? 'secondary' : 'ghost'}
-            size='sm'
-            onClick={() => onSectionChange?.('about')}
-            className='h-9'
-          >
-            About & Education
-          </Button>
-          <Button
-            variant={activeSection === 'experience' ? 'secondary' : 'ghost'}
-            size='sm'
-            onClick={() => onSectionChange?.('experience')}
-            className='h-9'
-          >
-            Professional Experience
-          </Button>
+          <Suspense>
+            <NavLinks />
+          </Suspense>
           <Button asChild variant='ghost' size='sm' className='h-9'>
             <Link href='/blog'>Blog</Link>
           </Button>

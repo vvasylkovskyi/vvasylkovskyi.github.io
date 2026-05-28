@@ -1,8 +1,16 @@
 import '../fumadocs.css';
+import './blog.css';
 
-import { RootProvider } from 'fumadocs-ui/provider/next';
+import { HomeLayout } from 'fumadocs-ui/layouts/home';
+import { baseOptions } from '@/lib/layout.shared';
 import type { ReactNode } from 'react';
-
-export default function BlogLayout({ children }: { children: ReactNode }) {
-  return <RootProvider>{children}</RootProvider>;
+import { RootProvider } from 'fumadocs-ui/provider/next';
+export default function Layout({ children }: { children: ReactNode }) {
+  return (
+    <RootProvider>
+      <HomeLayout className='blog-page items-center' {...baseOptions()}>
+        {children}
+      </HomeLayout>
+    </RootProvider>
+  );
 }

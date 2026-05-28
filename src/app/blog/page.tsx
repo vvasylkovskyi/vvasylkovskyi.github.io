@@ -1,32 +1,51 @@
 import Link from 'next/link';
 import { blog } from '@/lib/source';
+import { PathUtils } from 'fumadocs-core/source';
+import BannerImage from './hero-bg.jpg';
+import Image from 'next/image';
+import { Header } from '@/components/header';
 
-export default function BlogPage() {
+function getName(path: string) {
+  return PathUtils.basename(path, PathUtils.extname(path));
+}
+
+export default function Page() {
   const posts = [...blog.getPages()].sort(
     (a, b) =>
-      new Date(b.data.date as string).getTime() - new Date(a.data.date as string).getTime(),
+      new Date(b.data.date ?? getName(b.path)).getTime() -
+      new Date(a.data.date ?? getName(a.path)).getTime(),
   );
 
   return (
-    <main className='container mx-auto px-4 py-12'>
-      <h1 className='text-4xl font-bold text-foreground mb-2'>Blog</h1>
-      <p className='text-muted-foreground mb-10'>Thoughts, tutorials, and notes on engineering.</p>
-
-      <div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3'>
+    <main className='mx-auto w-full max-w-page px-4 pb-12 md:py-12'>
+      <div className='relative dark mb-4 aspect-[3.2] p-8 z-2 md:p-12'>
+        <Image
+          src={BannerImage}
+          priority
+          alt='banner'
+          width={1657}
+          height={518}
+          className='absolute inset-0 size-full -z-1 object-cover'
+        />
+        <h1 className='mb-4 text-3xl text-landing-foreground font-mono font-medium'>
+          Welcome to Viktor Vasylkovskyi Blog
+        </h1>
+        <p className='text-sm font-mono text-landing-foreground-200'>
+          My latest thoughts and insights on technology, programming, and personal projects.
+        </p>
+      </div>
+      <div className='grid grid-cols-1 gap-2 md:grid-cols-3 xl:grid-cols-4'>
         {posts.map((post) => (
           <Link
             key={post.url}
             href={post.url}
-            className='flex flex-col rounded-lg border border-border bg-card p-6 shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground'
+            className='flex flex-col bg-fd-card rounded-2xl border shadow-sm p-4 transition-colors hover:bg-fd-accent hover:text-fd-accent-foreground'
           >
-            <p className='text-lg font-semibold text-foreground mb-1'>{post.data.title}</p>
-            <p className='text-sm text-muted-foreground flex-1'>{post.data.description}</p>
-            <p className='mt-4 text-xs text-muted-foreground'>
-              {new Date(post.data.date as string).toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-              })}
+            <p className='font-medium'>{post.data.title}</p>
+            <p className='text-sm text-fd-muted-foreground'>{post.data.description}</p>
+
+            <p className='mt-auto pt-4 text-xs text-brand'>
+              {new Date(post.data.date ?? getName(post.path)).toDateString()}
             </p>
           </Link>
         ))}
