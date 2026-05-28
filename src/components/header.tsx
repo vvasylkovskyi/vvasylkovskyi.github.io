@@ -40,6 +40,9 @@ export function Header({ activeSection = 'about', onSectionChange }: HeaderProps
           >
             Professional Experience
           </Button>
+          <Button asChild variant='ghost' size='sm' className='h-9'>
+            <Link href='/blog'>Blog</Link>
+          </Button>
         </nav>
 
         <div className='flex items-center gap-3'>

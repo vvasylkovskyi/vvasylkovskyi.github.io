@@ -1,0 +1,13 @@
+/* Import fumadocs base styles */
+@import 'fumadocs-ui/css/neutral.css';
+@import 'fumadocs-ui/css/preset.css';
+
+/* Re-apply portfolio OKLch variables so fumadocs components inherit them */
+:root {
+  --fd-background: var(--background);
+  --fd-foreground: var(--foreground);
+  --fd-primary: var(--primary);
+  --fd-border: var(--border);
+  --fd-muted: var(--muted);
+  --fd-muted-foreground: var(--muted-foreground);
+}
