@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import type { Message as MessageType } from './chat';
+import type { Message as MessageType } from './message';
 import { Conversation, ConversationContent } from '@/components/ui/conversation';
 import {
   Message,
