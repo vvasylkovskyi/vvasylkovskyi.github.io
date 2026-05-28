@@ -1,0 +1,13 @@
+
+@media (min-width: 64rem) {
+    .blog-page .container {
+        max-width: 48rem;
+    }
+}
+
+
+@media (min-width: 64rem) {
+    .blog-page header .container {
+        max-width: 64rem;
+    }
+}
