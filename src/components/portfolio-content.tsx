@@ -1,11 +1,14 @@
 'use client';
 
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Bot, MessageCircle } from 'lucide-react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
-import { PortfolioHeader } from './portfolio-header';
 import { AboutSection } from './about-section';
 import { ExperienceSection } from './experience-section';
+import { PortfolioHeader } from './portfolio-header';
 
 function PortfolioSections() {
   const searchParams = useSearchParams();
@@ -51,6 +54,28 @@ export const PortfolioContent = () => {
         <PortfolioHeader />
 
         <div className='max-w-4xl mx-auto px-6 pb-20'>
+          {/* Viktor's AI Assistant Teaser Card */}
+          <Card className='bg-card mb-4 backdrop-blur-sm border-border hover:border-primary/50 transition-colors'>
+            <CardHeader>
+              <CardTitle className='flex items-center gap-2'>
+                <Bot className='w-5 h-5 text-primary' />
+                Viktor&apos;s AI Assistant
+              </CardTitle>
+              <CardDescription>
+                Have a conversation with an AI that knows Viktor&apos;s background, projects, and
+                experience. Ask it anything a recruiter might want to know.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Button asChild variant='default' size='sm' className='h-9'>
+                <Link href='/ai-agent'>
+                  <MessageCircle className='w-4 h-4 mr-2' />
+                  Start a Conversation
+                </Link>
+              </Button>
+            </CardContent>
+          </Card>
+
           <Suspense>
             <PortfolioSections />
           </Suspense>
