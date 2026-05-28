@@ -1,8 +1,14 @@
 'use client';
 
-import { useRef, useEffect, useCallback } from 'react';
+import { useRef, useEffect } from 'react';
 import { Send } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import {
+  PromptInput,
+  PromptInputTextarea,
+  PromptInputActions,
+  PromptInputSubmit,
+} from '@/components/ui/prompt-input';
+import Link from 'next/link';
 
 interface ChatInputProps {
   input: string;
@@ -15,51 +21,69 @@ export function ChatInput({ input, onInputChange, onSend, isLoading }: ChatInput
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
-    if (!isLoading && textareaRef.current) {
-      textareaRef.current.focus();
+    if (!isLoading) {
+      textareaRef.current?.focus();
     }
   }, [isLoading]);
 
-  useEffect(() => {
-    const textarea = textareaRef.current;
-    if (!textarea) return;
-    textarea.style.height = 'auto';
-    textarea.style.height = `${Math.min(textarea.scrollHeight, 200)}px`;
-  }, [input]);
-
-  const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-      if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-        onSend();
-      }
-    },
-    [onSend],
-  );
-
   return (
-    <div className='border-t border-border bg-background/95 backdrop-blur px-4 py-3 shrink-0'>
-      <div className='max-w-3xl mx-auto flex items-end gap-2'>
-        <textarea
-          ref={textareaRef}
+    <div className='border-t border-border bg-background p-4 pb-[max(1rem,env(safe-area-inset-bottom))] shrink-0'>
+      <div className='max-w-3xl mx-auto'>
+        <PromptInput
           value={input}
-          onChange={(e) => onInputChange(e.target.value)}
-          onKeyDown={handleKeyDown}
+          onValueChange={onInputChange}
+          onSubmit={onSend}
           disabled={isLoading}
-          placeholder='Ask me about Viktor...'
-          rows={1}
-          className='flex-1 resize-none rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring disabled:opacity-50 min-h-[40px] max-h-[200px] overflow-y-auto'
-        />
-        <Button
-          variant='default'
-          size='icon'
-          onClick={onSend}
-          disabled={isLoading || !input.trim()}
-          aria-label='Send message'
-          className='shrink-0'
         >
-          <Send className='h-4 w-4' />
-        </Button>
+          <PromptInputTextarea
+            ref={textareaRef}
+            placeholder='Ask me about Viktor...'
+            className='min-h-[44px] max-h-[200px]'
+          />
+          <PromptInputActions className='justify-end'>
+            <PromptInputSubmit>
+              <Send className='h-4 w-4' />
+              <span className='sr-only'>Send message</span>
+            </PromptInputSubmit>
+          </PromptInputActions>
+        </PromptInput>
+
+        <p className='sm:hidden text-[10px] text-muted-foreground text-center mt-2'>
+          By{' '}
+          <Link
+            href='https://github.com/vvasylkovskyi'
+            target='_blank'
+            rel='noopener noreferrer'
+            className='underline hover:text-foreground transition-colors'
+          >
+            Viktor Vasylkovskyi
+          </Link>
+          {' | '}
+          <Link href='#' className='underline hover:text-foreground transition-colors'>
+            About BarkGPT
+          </Link>
+        </p>
+
+        <p className='hidden sm:block text-xs text-muted-foreground text-center mt-2'>
+          Created by{' '}
+          <Link
+            href='https://github.com/vvasylkovskyi'
+            target='_blank'
+            rel='noopener noreferrer'
+            className='underline hover:text-foreground transition-colors'
+          >
+            Viktor Vasylkovskyi
+          </Link>
+          {' | '}
+          <Link
+            href='https://www.linkedin.com/in/viktor-vasylkovskyi-708b1712b/'
+            target='_blank'
+            rel='noopener noreferrer'
+            className='underline hover:text-foreground transition-colors'
+          >
+            Send me a message
+          </Link>
+        </p>
       </div>
     </div>
   );

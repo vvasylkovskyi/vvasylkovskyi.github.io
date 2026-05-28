@@ -23,9 +23,6 @@ export async function POST(req: Request) {
     return Response.json({ message: data.data.response }, { status: 200 });
   } catch (error) {
     console.error('Error calling AI agent:', error);
-    return Response.json(
-      { message: 'Something went wrong. Please try again.' },
-      { status: 500 },
-    );
+    return Response.json({ message: 'Something went wrong. Please try again.' }, { status: 500 });
   }
 }

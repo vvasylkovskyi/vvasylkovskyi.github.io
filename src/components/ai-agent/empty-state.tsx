@@ -1,6 +1,6 @@
 'use client';
 
-import { Bot } from 'lucide-react';
+import { Bot, BrainCircuit, Layers, UserCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface EmptyStateProps {
@@ -8,10 +8,22 @@ interface EmptyStateProps {
 }
 
 const suggestions = [
-  "What is Viktor's technical background?",
-  "Tell me about Viktor's experience with AI and LLMs",
-  "What projects has Viktor built?",
-  "What makes Viktor a strong engineering candidate?",
+  {
+    title: "What is Viktor's technical background?",
+    icon: BrainCircuit,
+  },
+  {
+    title: "Tell me about Viktor's experience with AI and LLMs",
+    icon: Bot,
+  },
+  {
+    title: 'What projects has Viktor built?',
+    icon: Layers,
+  },
+  {
+    title: 'What makes Viktor a strong engineering candidate?',
+    icon: UserCheck,
+  },
 ];
 
 export function EmptyState({ onSuggestionClick }: EmptyStateProps) {
@@ -28,16 +40,18 @@ export function EmptyState({ onSuggestionClick }: EmptyStateProps) {
           </p>
         </div>
 
-        <div className='grid grid-cols-1 sm:grid-cols-2 gap-2 max-w-lg mx-auto'>
+        <div className='grid grid-cols-2 gap-1.5 sm:gap-2 items-stretch'>
           {suggestions.map((suggestion) => (
             <Button
-              key={suggestion}
+              key={suggestion.title}
               variant='outline'
-              size='sm'
-              className='h-auto py-3 px-4 text-left justify-start whitespace-normal text-sm'
-              onClick={() => onSuggestionClick(suggestion)}
+              className='h-full p-2 sm:p-3 flex flex-col items-start gap-0.5 sm:gap-1 hover:bg-secondary transition-all bg-background'
+              onClick={() => onSuggestionClick(suggestion.title)}
             >
-              {suggestion}
+              <suggestion.icon className='h-3 w-3 sm:h-4 sm:w-4 shrink-0 text-foreground' />
+              <p className='font-medium text-xs sm:text-sm text-foreground text-left whitespace-normal break-words w-full'>
+                {suggestion.title}
+              </p>
             </Button>
           ))}
         </div>

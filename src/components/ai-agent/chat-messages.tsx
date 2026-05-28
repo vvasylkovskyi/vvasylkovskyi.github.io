@@ -1,35 +1,50 @@
 'use client';
 
-import { useStickToBottom } from 'use-stick-to-bottom';
-import { MessageBubble } from './message';
-import type { Message } from './message';
+import { useEffect, useRef } from 'react';
+import type { Message as MessageType } from './chat';
+import { Conversation, ConversationContent } from '@/components/ui/conversation';
+import {
+  Message,
+  MessageAvatar,
+  MessageContent,
+  MessageResponse,
+  MessageLoading,
+} from '@/components/ui/message';
 
 interface ChatMessagesProps {
-  messages: Message[];
+  messages: MessageType[];
   isLoading: boolean;
 }
 
 export function ChatMessages({ messages, isLoading }: ChatMessagesProps) {
-  const { scrollRef, contentRef } = useStickToBottom({ initial: 'instant' });
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [messages]);
 
   return (
-    <div ref={scrollRef} className='flex-1 overflow-y-auto min-h-0'>
-      <div ref={contentRef} className='px-4 py-6 max-w-3xl mx-auto space-y-4'>
-        {messages.map((message) => (
-          <MessageBubble key={message.id} message={message} />
-        ))}
-        {isLoading && (
-          <div className='flex justify-start'>
-            <div className='bg-muted text-foreground rounded-2xl rounded-tl-sm px-4 py-2 text-sm'>
-              <span className='inline-flex gap-1'>
-                <span className='w-2 h-2 bg-muted-foreground rounded-full animate-bounce [animation-delay:-0.3s]' />
-                <span className='w-2 h-2 bg-muted-foreground rounded-full animate-bounce [animation-delay:-0.15s]' />
-                <span className='w-2 h-2 bg-muted-foreground rounded-full animate-bounce' />
-              </span>
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
+    <Conversation>
+      <ConversationContent>
+        {messages.map((message, index) => {
+          const isUser = message.role === 'user';
+          const isLastAssistantMessage = !isUser && index === messages.length - 1 && isLoading;
+
+          return (
+            <Message key={message.id} from={isUser ? 'user' : 'assistant'}>
+              {!isUser && <MessageAvatar />}
+              <MessageContent>
+                {isUser ? message.content : <MessageResponse>{message.content}</MessageResponse>}
+                {isLastAssistantMessage && <MessageLoading />}
+              </MessageContent>
+              {isUser && <MessageAvatar />}
+            </Message>
+          );
+        })}
+      </ConversationContent>
+      <div ref={scrollRef} />
+    </Conversation>
   );
 }
