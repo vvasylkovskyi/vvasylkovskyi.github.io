@@ -53,6 +53,9 @@ export function Header() {
           <Button asChild variant='ghost' size='sm' className='h-9'>
             <Link href='/blog'>Blog</Link>
           </Button>
+          <Button asChild variant='ghost' size='sm' className='h-9'>
+            <Link href='/ai-agent'>AI Agent</Link>
+          </Button>
         </nav>
 
         <div className='flex items-center gap-3'>
