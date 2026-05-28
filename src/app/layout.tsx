@@ -1,6 +1,6 @@
 import './global.css';
 import type { Metadata, Viewport } from 'next';
-import './global.css';
+import type { ReactNode } from 'react';
 
 import localFont from 'next/font/local';
 import { ThemeProvider } from '@/components/theme-provider';
@@ -45,8 +45,7 @@ export const viewport: Viewport = {
   maximumScale: 1,
 };
 
-// eslint-disable-next-line no-undef
-export default function Layout({ children }: LayoutProps<'/'>) {
+export default function Layout({ children }: { children: ReactNode }) {
   return (
     <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
       <SettingsProvider>

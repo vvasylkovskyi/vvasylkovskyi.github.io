@@ -10,7 +10,8 @@
     "prettier": "prettier --check .",
     "prettier:fix": "prettier --write .",
     "start": "next start",
-    "pdf": "tsx download-pdf.ts"
+    "pdf": "tsx download-pdf.ts",
+    "postinstall": "fumadocs-mdx"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "1.2.12",
@@ -44,6 +45,9 @@
     "clsx": "2.1.1",
     "cmdk": "1.1.1",
     "embla-carousel-react": "8.6.0",
+    "fumadocs-core": "16.2.3",
+    "fumadocs-mdx": "14.1.0",
+    "fumadocs-ui": "16.2.3",
     "html2pdf.js": "0.14.0",
     "input-otp": "1.4.2",
     "lucide-react": "0.562.0",
@@ -60,7 +64,8 @@
     "tailwind-merge": "^3.3.1",
     "tailwindcss-animate": "1.0.7",
     "tsx": "^4.21.0",
-    "vaul": "1.1.2"
+    "vaul": "1.1.2",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "3.3.1",
