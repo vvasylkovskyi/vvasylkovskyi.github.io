@@ -1,0 +1,366 @@
+---
+title: Securing Database Access with Tailscale — Private Networking for Your Raspberry Pi
+description: How to use Tailscale to give your backend secure access to PostgreSQL running on a Raspberry Pi, without exposing the database to the internet.
+author: Viktor Vasylkovskyi
+date: "2026-05-31"
+---
+
+*Series: Self-hosted infrastructure with IaC Toolbox*
+
+---
+
+You've got a Raspberry Pi running PostgreSQL and a backend service running on your Mac or another machine. You need them to talk to each other.
+
+The obvious move is to open port 5432 to the internet. Please don't do that.
+
+PostgreSQL has no business being reachable from the public internet. Within hours of opening that port, bots will be hammering your authentication endpoint. Even with a strong password, you've added a permanent attack surface you now have to maintain forever.
+
+The better move is to never expose the port at all — and instead use a private encrypted network that your database and backend both join. That's what Tailscale does.
+
+By the end of this post you'll have:
+
+- **PostgreSQL** running in Docker on your Raspberry Pi, bound to loopback only
+- **Tailscale** installed on both the Pi and your Mac, putting them on the same private tailnet
+- Your backend connecting to the database over a stable Tailscale IP — with zero ports open to the internet
+
+---
+
+## How this works
+
+Tailscale creates a peer-to-peer encrypted mesh network (a "tailnet") between your devices. Each device gets a stable private IP in the `100.x.x.x` range. Traffic between devices is encrypted with WireGuard. No ports need to be opened on your router or firewall — devices initiate outbound connections to Tailscale's coordination server and then communicate directly.
+
+```mermaid
+graph LR
+    subgraph "Tailnet (private)"
+        subgraph "Raspberry Pi (100.x.x.1)"
+            PG["PostgreSQL :5432\n(bound to 127.0.0.1)"]
+        end
+        subgraph "Mac / Backend (100.x.x.2)"
+            BE["Backend Service"]
+        end
+    end
+    BE -->|"postgresql://100.x.x.1:5432/mydb\n(WireGuard encrypted)"| PG
+    Internet -.->|"port 5432 closed\n(not reachable)"| PG
+```
+
+The database binds to `127.0.0.1` in Docker — not to any external interface. But Tailscale creates a virtual network interface (`tailscale0`) on the Pi, and the `100.x.x.x` address lives on that interface. Traffic arriving on that address is coming from inside the tailnet, authenticated and encrypted. So the backend can reach the database at `100.x.x.1:5432` even though the port is technically "local only" on the Pi.
+
+This is the key insight: **the Tailscale IP is a local address on the Pi**, so binding PostgreSQL to `127.0.0.1` and allowing connections from `tailscale0` works correctly once you configure PostgreSQL's `listen_addresses` to include that interface.
+
+---
+
+## Prerequisites
+
+- A Raspberry Pi (ARM64 / Debian) running Docker
+- A Mac or Linux machine for the backend
+- A Tailscale account (free tier supports up to 100 devices) — [tailscale.com](https://tailscale.com)
+- Docker and Docker Compose on the Pi
+
+---
+
+## Step 1 — Install Tailscale on the Raspberry Pi
+
+Tailscale provides an official install script that handles package repo setup and systemd service registration:
+
+```bash
+# On the Raspberry Pi
+curl -fsSL https://tailscale.com/install.sh | sh
+```
+
+Authenticate the Pi to your tailnet. Go to [login.tailscale.com/admin/settings/keys](https://login.tailscale.com/admin/settings/keys) and generate an auth key — a reusable key works well for a device you'll re-provision occasionally:
+
+```bash
+sudo tailscale up --authkey tskey-auth-xxxxxxxxxxxx --hostname raspberrypi
+```
+
+Verify the device is connected and note the Tailscale IP:
+
+```bash
+tailscale ip -4
+# 100.x.x.x
+tailscale status
+# raspberrypi  100.x.x.x  linux   -  Running
+```
+
+That `100.x.x.x` address is stable — it won't change as long as the device stays in your tailnet. This is what your backend will use to connect.
+
+---
+
+## Step 2 — Install Tailscale on your Mac
+
+The simplest option is the Mac app from [tailscale.com/download](https://tailscale.com/download) — it lives in the menu bar and handles authentication through the browser. Alternatively, via Homebrew:
+
+```bash
+brew install tailscale
+sudo tailscaled &
+tailscale up
+```
+
+Log in with the same Tailscale account. Once connected, both devices appear in your tailnet and can reach each other.
+
+## Step 3 — Verify connectivity between devices
+
+Before going any further, confirm the two devices can actually reach each other over the tailnet. Check `tailscale status` on either device — you should see both machines listed as `Running`:
+
+```bash
+tailscale status
+# raspberrypi  100.95.50.80   linux   -  Running
+# my-mac       100.90.214.39  macOS   -  Running
+```
+
+Then ping across:
+
+```bash
+# From your Mac — ping the Pi
+ping 100.95.50.80
+# PING 100.95.50.80: 56 data bytes
+# 64 bytes from 100.95.50.80: icmp_seq=0 ttl=64 time=3.2 ms
+
+# From the Pi — ping the Mac
+ping 100.90.214.39
+# PING 100.90.214.39: 56 data bytes
+# 64 bytes from 100.90.214.39: icmp_seq=0 ttl=64 time=4.1 ms
+```
+
+If ping works in both directions, the tailnet is healthy and you're ready to deploy the database.
+
+---
+
+## Step 4 — Deploy PostgreSQL on the Raspberry Pi
+
+With Tailscale in place, set up PostgreSQL. The key decisions:
+
+1. Bind PostgreSQL to both `127.0.0.1` and the Tailscale interface, so it accepts connections from the tailnet but nothing else
+2. Mount a host volume so data survives container restarts
+
+Create the directory structure on the Pi:
+
+```bash
+mkdir -p ~/.iac-toolbox/postgresql/data
+```
+
+The Docker Compose file at `~/.iac-toolbox/postgresql/docker-compose.yml`:
+
+```yaml
+services:
+  db:
+    container_name: postgresql-db
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+      POSTGRES_DB: mydb
+      POSTGRES_USER: postgres
+    ports:
+      - "127.0.0.1:5432:5432"   # loopback bind — Tailscale handles the rest
+    volumes:
+      - ~/.iac-toolbox/postgresql/data:/var/lib/postgresql/data
+    command: >
+      postgres
+      -c listen_addresses='127.0.0.1'
+```
+
+Wait — if we bind to `127.0.0.1` and tell PostgreSQL to `listen_addresses='127.0.0.1'`, how does the backend on the Mac reach it over Tailscale?
+
+Here's the subtlety: the Docker port mapping `127.0.0.1:5432:5432` binds the Pi's loopback port 5432 to the container's port 5432. The Tailscale interface (`tailscale0`) is separate from loopback — traffic arriving on the Tailscale IP reaches the Pi's network stack before it hits loopback. So we need PostgreSQL (via the Docker binding) to be reachable on the Tailscale IP too.
+
+The fix is to bind the port to the Tailscale IP directly, or bind to all interfaces and rely on the fact that only authenticated tailnet devices can reach you:
+
+```yaml
+services:
+  db:
+    container_name: postgresql-db
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+      POSTGRES_DB: mydb
+      POSTGRES_USER: postgres
+    ports:
+      - "5432:5432"   # bind to all interfaces — Tailscale ACLs control who can reach it
+    volumes:
+      - ~/.iac-toolbox/postgresql/data:/var/lib/postgresql/data
+```
+
+This exposes port 5432 on the Pi's real network interfaces. The Pi's router firewall should have port 5432 closed — and it almost certainly does by default. Traffic from the tailnet arrives on `tailscale0`, which is a separate interface not reachable from the internet. **Nothing is exposed publicly** — the "all interfaces" binding only matters within the network interfaces that exist on the machine, and the tailnet interface is private by design.
+
+Start the container:
+
+```bash
+cd ~/.iac-toolbox/postgresql
+POSTGRES_PASSWORD=yourpassword docker compose up -d
+```
+
+### Local connectivity check
+
+Before testing remote access, confirm PostgreSQL is healthy from the Pi itself. This rules out any container or config issues before Tailscale routing is involved.
+
+Check the container is running:
+
+```bash
+docker ps --filter name=postgresql-db
+# CONTAINER ID   IMAGE         COMMAND                  STATUS
+# abc123         postgres:16   "docker-entrypoint.s…"   Up 12 seconds
+```
+
+Check PostgreSQL is accepting connections:
+
+```bash
+docker exec postgresql-db pg_isready -U postgres
+# localhost:5432 - accepting connections
+```
+
+Run an actual query inside the container to confirm the database is responsive:
+
+```bash
+docker exec -it postgresql-db psql -U postgres -d mydb -c "SELECT 1;"
+#  ?column?
+# ----------
+#         1
+```
+
+If all three pass, PostgreSQL is healthy locally. Now configure it to accept connections from the tailnet.
+
+---
+
+## Step 5 — Configure PostgreSQL to accept Tailscale connections
+
+By default, PostgreSQL's `pg_hba.conf` only allows local socket connections and connections from `127.0.0.1`. You need to add a rule for the Tailscale subnet (`100.64.0.0/10`).
+
+The cleanest way to do this with Docker is to mount a custom `pg_hba.conf`. Create `~/.iac-toolbox/postgresql/pg_hba.conf`:
+
+```
+# TYPE  DATABASE  USER      ADDRESS           METHOD
+local   all       all                         trust
+host    all       all       127.0.0.1/32      scram-sha-256
+host    all       all       100.64.0.0/10     scram-sha-256
+```
+
+The `100.64.0.0/10` CIDR covers the entire Tailscale address space. Only devices in your tailnet (verified by WireGuard keys) can originate traffic from those addresses, so this is safe.
+
+Update the compose file to mount the config:
+
+```yaml
+services:
+  db:
+    container_name: postgresql-db
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+      POSTGRES_DB: mydb
+      POSTGRES_USER: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ~/.iac-toolbox/postgresql/data:/var/lib/postgresql/data
+      - ~/.iac-toolbox/postgresql/pg_hba.conf:/etc/postgresql/pg_hba.conf:ro
+    command: postgres -c hba_file=/etc/postgresql/pg_hba.conf
+```
+
+Restart the container to pick up the new config:
+
+```bash
+docker compose down && POSTGRES_PASSWORD=yourpassword docker compose up -d
+```
+
+---
+
+## Step 6 — Connect from your Mac
+
+With both devices on the tailnet, connecting from your Mac is straightforward:
+
+```bash
+# Get the Pi's Tailscale IP
+tailscale status
+# raspberrypi  100.x.x.1  linux   -  Running
+
+# Connect with psql
+psql -h 100.x.x.1 -p 5432 -U postgres -d mydb
+# Password for user postgres: 
+# psql (16.x)
+# Type "help" for help.
+# mydb=#
+```
+
+In your backend service, the connection string is:
+
+```
+postgresql://postgres:yourpassword@100.x.x.1:5432/mydb
+```
+
+Because the Tailscale IP is stable, this connection string doesn't change. No dynamic DNS, no VPN configuration in your app — just a fixed IP that always routes to the right device.
+
+---
+
+## What you get from this setup
+
+**Nothing exposed to the internet.** There is no port 5432 open on your router. Shodan can't find your database. Bots can't reach the authentication endpoint. The attack surface is exactly zero for external traffic.
+
+**Mutual authentication at the network layer.** Every device in your tailnet has a WireGuard keypair managed by Tailscale. A device that isn't enrolled in your tailnet cannot route to `100.x.x.x` addresses at all — the traffic simply has nowhere to go. Authentication happens below the PostgreSQL layer.
+
+**Stable addressing.** The Tailscale IP persists across reboots, IP changes on the underlying network, and ISP reassignments. Your backend can hardcode `100.x.x.1` and it will keep working when your Pi's public IP changes.
+
+**Tailscale Access Control Lists (ACLs).** If you later add more devices to your tailnet, you can restrict which devices can reach which ports using ACLs in the Tailscale admin console — without touching firewall rules on the Pi itself. For example, you could allow only your backend's Tailscale IP to reach port 5432, and deny everything else on the tailnet.
+
+---
+
+## Verifying the security posture
+
+Confirm the database is not reachable from outside the tailnet:
+
+```bash
+# From a machine NOT in your tailnet (e.g., a cloud VM with a different account)
+nc -zv <your-pi-public-ip> 5432
+# nc: connect to <pi-ip> port 5432 (tcp) failed: Connection refused
+```
+
+Confirm it IS reachable from inside the tailnet:
+
+```bash
+# From your Mac (on the tailnet)
+nc -zv 100.x.x.1 5432
+# Connection to 100.x.x.1 port 5432 [tcp/postgresql] succeeded!
+```
+
+Check Tailscale reports both devices as connected:
+
+```bash
+tailscale status
+# raspberrypi  100.x.x.1  linux   -  Running
+# my-mac       100.x.x.2  macOS   -  Running
+```
+
+---
+
+## A note on credential handling
+
+The `POSTGRES_PASSWORD` in the Docker Compose file is passed as an environment variable — never hardcoded in the file itself. Keep it in a `.env` file with mode `0600`, or in a secrets manager. The `pg_hba.conf` `scram-sha-256` method means the password is never sent in plaintext even over the already-encrypted Tailscale tunnel.
+
+```bash
+# .env file next to docker-compose.yml (0600, not committed to git)
+POSTGRES_PASSWORD=a-long-random-password-here
+```
+
+```bash
+# Start with the env file
+docker compose --env-file .env up -d
+```
+
+---
+
+## What's next
+
+This post covers the network security layer. There are a few natural extensions worth noting for later:
+
+**Tailscale ACLs** — as your tailnet grows, restrict which devices can reach which ports. The Tailscale admin console lets you write policy as code: only `tag:backend` devices can reach `tag:database` on port 5432.
+
+**Automated provisioning** — if you want to script the Tailscale install and PostgreSQL deployment, IaC Toolbox is adding `iac-toolbox tailscale install` and `iac-toolbox postgresql install` commands that run these steps via Ansible. The auth key handling, credential storage, and Ansible playbooks follow the same patterns as the observability stack covered in the other series.
+
+**Backups** — a database no one can reach from the internet is still a single point of failure. Consider a scheduled `pg_dump` to an S3-compatible store. The Tailscale tunnel doesn't help with that — it's a separate concern.
+
+For now: your database is running, the port is not open to the internet, and your backend can find it reliably at a fixed IP. That's the right foundation.
+
+---
+
+*All configs from this post are available at [github.com/vvasylkovskyi/iac-toolbox-raspberrypi](https://github.com/vvasylkovskyi/iac-toolbox-raspberrypi).*

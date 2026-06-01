@@ -22,7 +22,9 @@ export function ChatHeader({ onClear, hasMessages }: ChatHeaderProps) {
           <h1 className='text-base font-semibold text-foreground leading-tight'>
             Viktor&apos;s AI Assistant
           </h1>
-          <p className='text-xs text-muted-foreground leading-tight'>Ask me anything about Viktor</p>
+          <p className='text-xs text-muted-foreground leading-tight'>
+            Ask me anything about Viktor
+          </p>
         </div>
       </div>
 

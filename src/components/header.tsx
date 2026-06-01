@@ -2,10 +2,10 @@
 
 import Link from 'next/link';
 import { Github, Linkedin } from 'lucide-react';
-import { useSearchParams } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
 import { Button } from '@/components/ui/button';
-import { ThemeToggle } from '@/components/theme-toggle';
+import { ThemeToggle } from './theme-toggle';
 
 const LINKEDIN_URL = 'https://www.linkedin.com/in/viktor-vasylkovskyi-708b1712b/';
 const GITHUB_URL = 'https://github.com/vvasylkovskyi';
@@ -13,14 +13,16 @@ const GITHUB_URL = 'https://github.com/vvasylkovskyi';
 const BRAND_NAME = 'Viktor Vasylkovskyi';
 
 function NavLinks() {
+  const pathname = usePathname();
   const searchParams = useSearchParams();
   const activeSection = searchParams.get('section') ?? 'about';
+  const isHome = pathname === '/';
 
   return (
     <>
       <Button
         asChild
-        variant={activeSection === 'about' ? 'secondary' : 'ghost'}
+        variant={isHome && activeSection === 'about' ? 'secondary' : 'ghost'}
         size='sm'
         className='h-9'
       >
@@ -28,11 +30,27 @@ function NavLinks() {
       </Button>
       <Button
         asChild
-        variant={activeSection === 'experience' ? 'secondary' : 'ghost'}
+        variant={isHome && activeSection === 'experience' ? 'secondary' : 'ghost'}
         size='sm'
         className='h-9'
       >
         <Link href='/?section=experience'>Professional Experience</Link>
+      </Button>
+      <Button
+        asChild
+        variant={pathname.startsWith('/blog') ? 'secondary' : 'ghost'}
+        size='sm'
+        className='h-9'
+      >
+        <Link href='/blog'>Blog</Link>
+      </Button>
+      <Button
+        asChild
+        variant={pathname.startsWith('/ai-agent') ? 'secondary' : 'ghost'}
+        size='sm'
+        className='h-9'
+      >
+        <Link href='/ai-agent'>AI Agent</Link>
       </Button>
     </>
   );
@@ -50,12 +68,6 @@ export function Header() {
           <Suspense>
             <NavLinks />
           </Suspense>
-          <Button asChild variant='ghost' size='sm' className='h-9'>
-            <Link href='/blog'>Blog</Link>
-          </Button>
-          <Button asChild variant='ghost' size='sm' className='h-9'>
-            <Link href='/ai-agent'>AI Agent</Link>
-          </Button>
         </nav>
 
         <div className='flex items-center gap-3'>

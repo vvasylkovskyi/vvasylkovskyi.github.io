@@ -3,7 +3,7 @@
 @import 'fumadocs-ui/css/preset.css';
 @import 'tw-animate-css';
 
-
+/*
 #nd-nav {
   width: 100%;
 }
@@ -35,7 +35,7 @@
   --color-brand-secondary-foreground: #97890c;
   --color-brand-200: hsl(33, 100%, 50%);
 
-  --color-landing-foreground: #ffffff;
+  --color-landing-foreground: #59592a;
   --color-landing-foreground-200: #a8a866;
 }
 
@@ -152,4 +152,4 @@ html > body[data-scroll-locked] {
     opacity: 0;
     transform: translateX(212px);
   }
-}
+} */
